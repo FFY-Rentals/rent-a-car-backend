@@ -1,6 +1,7 @@
 package com.tobeto.pair8.services.dtos.model.requests;
 
 import com.tobeto.pair8.services.dtos.brand.responses.GetAllListBrandResponse;
+import com.tobeto.pair8.services.dtos.brand.responses.GetIdBrandResponse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -12,6 +13,6 @@ public class UpdateModelRequest {
    @NotBlank(message = "isim boş olamaz")
     private String name;
 
-    // private GetAllListBrandResponse brandResponse;
-    //GetAllListBrandResponse'un burada ne için olduğunu anlamadığım için yoruma aldım
+   private int brandId;
+    //GetAllListBrandResponse'un burada ne için olduğunu anlamadığım için sildim
 }

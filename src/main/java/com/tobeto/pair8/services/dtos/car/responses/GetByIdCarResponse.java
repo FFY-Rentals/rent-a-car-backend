@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetByIdCarResponse {
+
     private short modelYear;
     private Long kilometer;
     private String plate;

@@ -1,0 +1,16 @@
+package com.tobeto.pair8.services.dtos.CorporateCustomer.responses;
+
+import com.tobeto.pair8.services.dtos.user.responses.GetByNameUserResponse;
+import com.tobeto.pair8.services.dtos.user.responses.GetListUserResponse;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class GetAllCorporateCustomer {
+    private String companyName;
+    private String taxNo;
+    private GetListUserResponse user;
+}

@@ -3,6 +3,7 @@ package com.tobeto.pair8.services.concretes;
 import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
 import com.tobeto.pair8.entities.concretes.User;
 import com.tobeto.pair8.repositories.UserRepository;
+import com.tobeto.pair8.rules.user.UserBusinessRulesService;
 import com.tobeto.pair8.services.abstracts.UserService;
 import com.tobeto.pair8.services.dtos.user.requests.AddUserRequest;
 import com.tobeto.pair8.services.dtos.user.responses.GetListUserResponse;
@@ -18,23 +19,11 @@ import java.util.stream.Collectors;
 public class UserManager implements UserService {
     private final ModelMapperService modelMapperService;
     private final UserRepository userRepository;
+    private final UserBusinessRulesService userBusinessRulesService;
 
     @Override
     public void add(AddUserRequest addUserRequest) {
-        LocalDate now = LocalDate.now();
-        LocalDate eighteenYearsAgo = now.minusYears(18);
-
-        if (addUserRequest.getBirthDate().isAfter(eighteenYearsAgo)) {
-            throw new RuntimeException("18 yaşından küçük kullanıcı eklenemez.");
-        }
-        if (userRepository.existsByNameAndSurName(addUserRequest.getName(), addUserRequest.getSurName()) ||
-                userRepository.existsByEmail(addUserRequest.getEmail()))
-            throw new RuntimeException("bu kullanıcı ile kayıt oluşturamazsın.");
-
-        if (!addUserRequest.getPassword().equals(addUserRequest.getConfirmPassword())) {
-            throw new RuntimeException("Şifreler uyuşmuyor.");
-        }
-
+        userBusinessRulesService.userException(addUserRequest);
         User user = this.modelMapperService.forRequest().map(addUserRequest, User.class);
         userRepository.save(user);
     }

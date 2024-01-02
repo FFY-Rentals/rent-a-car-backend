@@ -1,5 +1,6 @@
 package com.tobeto.pair8.services.dtos.rental.requests;
 
+import com.tobeto.pair8.services.dtos.car.responses.GetByIdCarResponse;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

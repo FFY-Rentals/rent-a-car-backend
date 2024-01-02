@@ -19,7 +19,4 @@ public class GetAllListCarResponse {
 
     private GetAllListModelRespose modelRespose;
     private String colorName;
-
-
-
 }

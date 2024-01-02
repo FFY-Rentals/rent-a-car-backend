@@ -2,6 +2,7 @@ package com.tobeto.pair8.controllers;
 
 import com.tobeto.pair8.services.abstracts.RentalService;
 import com.tobeto.pair8.services.dtos.rental.requests.AddRentalRequest;
+import com.tobeto.pair8.services.dtos.rental.requests.UpdateRentalRequest;
 import com.tobeto.pair8.services.dtos.rental.responses.GetListRentalResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,12 @@ public class RentalsController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public void add(@RequestBody @Valid AddRentalRequest addRentalRequest){
         rentalService.add(addRentalRequest);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void update(@RequestBody @Valid UpdateRentalRequest updateRentalRequest){
+        rentalService.update(updateRentalRequest);
     }
 
     @GetMapping("getRentals")

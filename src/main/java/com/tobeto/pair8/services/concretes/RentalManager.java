@@ -8,6 +8,7 @@ import com.tobeto.pair8.services.abstracts.CarService;
 import com.tobeto.pair8.services.abstracts.RentalService;
 import com.tobeto.pair8.services.dtos.car.responses.GetByIdCarResponse;
 import com.tobeto.pair8.services.dtos.rental.requests.AddRentalRequest;
+import com.tobeto.pair8.services.dtos.rental.requests.UpdateRentalRequest;
 import com.tobeto.pair8.services.dtos.rental.responses.GetListRentalResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +37,16 @@ public class RentalManager implements RentalService {
         rental.setStartKilometer(carResponse.getKilometer());
         rentalRepository.save(rental);
     }
+
+    @Override
+    public void update(UpdateRentalRequest updateRentalRequest) {
+        Rental rentalToUpdate =rentalRepository.findById(updateRentalRequest.getId())
+                .orElseThrow();
+        this.modelMapperService.forRequest().map(updateRentalRequest,rentalToUpdate);
+        rentalRepository.saveAndFlush(rentalToUpdate);
+
+    }
+
 
     @Override
     public List<GetListRentalResponse> getList() {
