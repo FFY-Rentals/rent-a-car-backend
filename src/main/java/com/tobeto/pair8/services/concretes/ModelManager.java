@@ -1,13 +1,9 @@
 package com.tobeto.pair8.services.concretes;
 
-import com.tobeto.pair8.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair8.entities.Brand;
-import com.tobeto.pair8.entities.Car;
-import com.tobeto.pair8.entities.Model;
+import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
+import com.tobeto.pair8.entities.concretes.Model;
 import com.tobeto.pair8.repositories.ModelRepository;
-import com.tobeto.pair8.services.abstracts.BrandService;
 import com.tobeto.pair8.services.abstracts.ModelService;
-import com.tobeto.pair8.services.dtos.car.responses.GetAllListCarResponse;
 import com.tobeto.pair8.services.dtos.model.requests.AddModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.DeleteModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.UpdateModelRequest;

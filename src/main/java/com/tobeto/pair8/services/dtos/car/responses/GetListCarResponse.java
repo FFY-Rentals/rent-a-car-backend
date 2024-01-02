@@ -18,11 +18,11 @@ public class GetListCarResponse {
     private int kilometer;
     private String plate;
     private int year;
-    private double dailyPrice;
+    private float dailyPrice;
 
     private GetModelNameResponse modelNameResponse;
     private GetColorNameResponse colorNameResponse;
-    private GetNameBrandResponse brandNameResponse;
+
 
 
 }

@@ -1,7 +1,7 @@
 package com.tobeto.pair8.services.concretes;
 
-import com.tobeto.pair8.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair8.entities.Color;
+import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
+import com.tobeto.pair8.entities.concretes.Color;
 import com.tobeto.pair8.repositories.ColorRepository;
 import com.tobeto.pair8.services.abstracts.ColorService;
 import com.tobeto.pair8.services.dtos.color.requests.AddColorRequest;
@@ -9,7 +9,6 @@ import com.tobeto.pair8.services.dtos.color.requests.DeleteColorRequest;
 import com.tobeto.pair8.services.dtos.color.requests.UpdateColorRequest;
 import com.tobeto.pair8.services.dtos.color.resposes.GetAllListColorResponse;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.tobeto.pair8.repositories;
 
-import com.tobeto.pair8.entities.User;
+import com.tobeto.pair8.entities.concretes.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {

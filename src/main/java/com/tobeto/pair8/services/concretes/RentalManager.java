@@ -1,9 +1,8 @@
 package com.tobeto.pair8.services.concretes;
 
-import com.tobeto.pair8.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair8.entities.Rental;
+import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
+import com.tobeto.pair8.entities.concretes.Rental;
 import com.tobeto.pair8.repositories.RentalRepository;
-import com.tobeto.pair8.rules.rental.RentalBusinessRulesManager;
 import com.tobeto.pair8.rules.rental.RentalBusinessRulesService;
 import com.tobeto.pair8.services.abstracts.CarService;
 import com.tobeto.pair8.services.abstracts.RentalService;

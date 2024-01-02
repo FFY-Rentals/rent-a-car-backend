@@ -1,4 +1,4 @@
-package com.tobeto.pair8.core.utilities.mappers;
+package com.tobeto.pair8.core.utilities.mappers.services;
 
 import org.modelmapper.ModelMapper;
 

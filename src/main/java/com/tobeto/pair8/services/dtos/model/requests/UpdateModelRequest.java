@@ -7,10 +7,11 @@ import lombok.Data;
 
 @Data
 public class UpdateModelRequest {
-   @NotNull(message = "model id null olamaz")
+   @NotNull(message = "model id boş olamaz")
     private int id;
    @NotBlank(message = "isim boş olamaz")
     private String name;
 
-    private GetAllListBrandResponse brandResponse;
+    // private GetAllListBrandResponse brandResponse;
+    //GetAllListBrandResponse'un burada ne için olduğunu anlamadığım için yoruma aldım
 }

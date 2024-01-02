@@ -13,5 +13,5 @@ public class AddModelRequest {
     @NotBlank(message = "model ismi boş olamaz")
     @Size(min = 2, message = "Model ismi en az iki hane olmalıdır.")
     private String name;
-    private GetIdBrandResponse brandResponse;
+    private int brandId;
 }

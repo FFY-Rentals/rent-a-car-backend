@@ -1,11 +1,9 @@
 package com.tobeto.pair8.services.abstracts;
 
-import com.tobeto.pair8.entities.Model;
 import com.tobeto.pair8.services.dtos.model.requests.AddModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.DeleteModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.UpdateModelRequest;
 import com.tobeto.pair8.services.dtos.model.responses.GetAllListModelRespose;
-import com.tobeto.pair8.services.dtos.rental.responses.GetListRentalResponse;
 
 import java.util.List;
 

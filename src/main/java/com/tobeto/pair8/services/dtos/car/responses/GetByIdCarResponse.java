@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetByIdCarResponse {
-    private int kilometer;
+    private short modelYear;
+    private Long kilometer;
     private String plate;
-    private double dailyPrice;
+    private Float dailyPrice;
 
     private GetModelNameResponse modelNameResponse;
-    private GetColorNameResponse colorNameResponse;
+    private String colorName;
 }
