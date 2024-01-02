@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class UserManager implements UserService {
     private final ModelMapperService modelMapperService;
     private final UserRepository userRepository;
+
     @Override
     public void add(AddUserRequest addUserRequest) {
         LocalDate now = LocalDate.now();
@@ -27,11 +28,17 @@ public class UserManager implements UserService {
             throw new RuntimeException("18 yaşından küçük kullanıcı eklenemez.");
         }
         if (userRepository.existsByNameAndSurName(addUserRequest.getName(), addUserRequest.getSurName()) ||
-        userRepository.existsByEmail(addUserRequest.getEmail()))
+                userRepository.existsByEmail(addUserRequest.getEmail()))
             throw new RuntimeException("bu kullanıcı ile kayıt oluşturamazsın.");
+
+        if (!addUserRequest.getPassword().equals(addUserRequest.getConfirmPassword())) {
+            throw new RuntimeException("Şifreler uyuşmuyor.");
+        }
+
         User user = this.modelMapperService.forRequest().map(addUserRequest, User.class);
         userRepository.save(user);
     }
+
 
     @Override
     public List<GetListUserResponse> getAll() {
