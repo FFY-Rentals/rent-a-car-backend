@@ -5,6 +5,7 @@ import com.tobeto.pair8.services.dtos.user.requests.AddUserRequest;
 import com.tobeto.pair8.services.dtos.user.responses.GetListUserResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,5 +26,17 @@ public class UserController {
     public List<GetListUserResponse> getAll()
     {
         return userService.getAll();
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void update(@RequestBody @Valid AddUserRequest addUserRequest){
+        userService.add(addUserRequest);
+    }
+
+    @DeleteMapping("/delete")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void delete(@RequestBody @Valid AddUserRequest addUserRequest){
+        userService.add(addUserRequest);
     }
 }

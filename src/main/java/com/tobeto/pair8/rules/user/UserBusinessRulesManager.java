@@ -22,12 +22,12 @@ public class UserBusinessRulesManager implements UserBusinessRulesService {
             throw new RuntimeException("18 yaşından küçük kullanıcı eklenemez.");
         }
         if (userRepository.existsByNameAndSurName(addUserRequest.getName(), addUserRequest.getSurName()) ||
-                userRepository.existsByEmail(addUserRequest.getEmail()))
+                userRepository.existsByEmail(addUserRequest.getEmail())) {
             throw new RuntimeException("bu kullanıcı ile kayıt oluşturamazsın.");
+        }
 
         if (!addUserRequest.getPassword().equals(addUserRequest.getConfirmPassword())) {
             throw new RuntimeException("Şifreler uyuşmuyor.");
         }
     }
-
 }

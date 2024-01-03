@@ -1,5 +1,6 @@
 package com.tobeto.pair8.services.dtos.user.requests;
 
+import com.tobeto.pair8.entities.concretes.User;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -31,5 +32,4 @@ public class AddUserRequest {
 
     @Transient
     private String confirmPassword;
-
 }
