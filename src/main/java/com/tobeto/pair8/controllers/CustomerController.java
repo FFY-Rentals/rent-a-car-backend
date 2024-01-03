@@ -44,10 +44,7 @@ public class CustomerController {
     }
 
     @GetMapping("/getById")
-    @ResponseStatus(code = HttpStatus.OK)
-    public GetByIdCustomerResponse getById(@RequestParam int id) {
+    public GetByIdCustomerResponse getById(@RequestParam @Valid int id) {
         return customerService.getById(id);
     }
-
-
 }

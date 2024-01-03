@@ -54,8 +54,7 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public GetByIdCustomerResponse getById(int id) {
-        Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
+        Customer customer = customerRepository.findById(id).orElseThrow();
         GetByIdCustomerResponse getByIdCustomerResponse = this.modelMapperService.forResponse().map(customer, GetByIdCustomerResponse.class);
         return getByIdCustomerResponse;
     }

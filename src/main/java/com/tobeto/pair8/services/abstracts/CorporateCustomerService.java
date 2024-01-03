@@ -4,7 +4,7 @@ import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.AddCorporateCus
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.DeleteCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.UpdateCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetAllCorporateCustomer;
-import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIDCorporateCustomerResponse;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIdCorCustomerResponse;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface CorporateCustomerService {
     void delete(DeleteCorporateCustomerRequest deleteCorporateCustomerRequest);
      List<GetAllCorporateCustomer> getAll();
 
-    GetByIDCorporateCustomerResponse getById(int id);
+    GetByIdCorCustomerResponse getById(int id);
 }
