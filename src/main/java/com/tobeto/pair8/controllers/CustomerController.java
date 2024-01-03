@@ -2,7 +2,10 @@ package com.tobeto.pair8.controllers;
 
 import com.tobeto.pair8.services.abstracts.CustomerService;
 import com.tobeto.pair8.services.dtos.customer.request.AddCustomerRequest;
+import com.tobeto.pair8.services.dtos.customer.request.DeleteCustomerRequest;
+import com.tobeto.pair8.services.dtos.customer.request.UpdateCustomerRequest;
 import com.tobeto.pair8.services.dtos.customer.responses.GetAllCustomerResponse;
+import com.tobeto.pair8.services.dtos.customer.responses.GetByIdCustomerResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,14 +27,14 @@ public class CustomerController {
 
     @PutMapping("/update")
     @ResponseStatus(code = HttpStatus.OK)
-    public void update(@RequestBody @Valid AddCustomerRequest addCustomerRequest) {
-        customerService.add(addCustomerRequest);
+    public void update(@RequestBody @Valid UpdateCustomerRequest updateCustomerRequest) {
+        customerService.update(updateCustomerRequest);
     }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody @Valid AddCustomerRequest addCustomerRequest) {
-        customerService.add(addCustomerRequest);
+    public void delete(@RequestBody @Valid DeleteCustomerRequest deleteCustomerRequest) {
+        customerService.delete(deleteCustomerRequest);
     }
 
     @GetMapping("/getAll")
@@ -40,6 +43,11 @@ public class CustomerController {
         return customerService.getAll();
     }
 
+    @GetMapping("/getById")
+    @ResponseStatus(code = HttpStatus.OK)
+    public GetByIdCustomerResponse getById(@RequestParam int id) {
+        return customerService.getById(id);
+    }
 
 
 }

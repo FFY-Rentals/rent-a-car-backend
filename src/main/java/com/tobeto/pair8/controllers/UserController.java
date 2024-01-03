@@ -2,6 +2,8 @@ package com.tobeto.pair8.controllers;
 
 import com.tobeto.pair8.services.abstracts.UserService;
 import com.tobeto.pair8.services.dtos.user.requests.AddUserRequest;
+import com.tobeto.pair8.services.dtos.user.requests.DeleteUserRequest;
+import com.tobeto.pair8.services.dtos.user.requests.UpdateUserRequest;
 import com.tobeto.pair8.services.dtos.user.responses.GetListUserResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -30,13 +32,13 @@ public class UserController {
 
     @PutMapping("/update")
     @ResponseStatus(code = HttpStatus.OK)
-    public void update(@RequestBody @Valid AddUserRequest addUserRequest){
-        userService.add(addUserRequest);
+    public void update(@RequestBody @Valid UpdateUserRequest updateUserRequest){
+        userService.update(updateUserRequest);
     }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody @Valid AddUserRequest addUserRequest){
-        userService.add(addUserRequest);
+    public void delete(@RequestBody @Valid DeleteUserRequest deleteUserRequest){
+        userService.delete(deleteUserRequest);
     }
 }

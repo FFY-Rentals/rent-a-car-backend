@@ -2,9 +2,10 @@ package com.tobeto.pair8.controllers;
 
 import com.tobeto.pair8.services.abstracts.CorporateCustomerService;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.AddCorporateCustomerRequest;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.DeleteCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.UpdateCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetAllCorporateCustomer;
-import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIdCorporateCustomerResponse;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIDCorporateCustomerResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class CorporateCustomerController {
     }
 
     @GetMapping("/getById")
-    public GetByIdCorporateCustomerResponse getById(@RequestParam @Valid int id){
+    public GetByIDCorporateCustomerResponse getById(@RequestParam @Valid int id){
         return corporateCustomerService.getById(id);
     }
 
@@ -44,7 +45,7 @@ public class CorporateCustomerController {
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody @Valid AddCorporateCustomerRequest addCorporateCustomerRequest) {
-        corporateCustomerService.add(addCorporateCustomerRequest);
+    public void delete(@RequestBody @Valid DeleteCorporateCustomerRequest deleteCorporateCustomerRequest) {
+        corporateCustomerService.delete(deleteCorporateCustomerRequest);
     }
 }

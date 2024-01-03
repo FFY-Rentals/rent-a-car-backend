@@ -8,7 +8,7 @@ import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.AddCorporateCus
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.DeleteCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.UpdateCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetAllCorporateCustomer;
-import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIdCorporateCustomerResponse;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIDCorporateCustomerResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -53,10 +53,10 @@ public class CorporateCustomerManager implements CorporateCustomerService {
     }
 
     @Override
-    public GetByIdCorporateCustomerResponse getById(int id) {
+    public GetByIDCorporateCustomerResponse getById(int id) {
         CorporateCustomer corporateCustomer = corporateCustomerRepository.findById(id).orElseThrow();
 
-        GetByIdCorporateCustomerResponse corporateCustomerResponse= this.modelMapperService.forResponse().map(corporateCustomer, GetByIdCorporateCustomerResponse.class);
+        GetByIDCorporateCustomerResponse corporateCustomerResponse= this.modelMapperService.forResponse().map(corporateCustomer, GetByIDCorporateCustomerResponse.class);
         return corporateCustomerResponse;
     }
 }
