@@ -2,7 +2,9 @@ package com.tobeto.pair8.controllers;
 
 import com.tobeto.pair8.services.abstracts.RentalService;
 import com.tobeto.pair8.services.dtos.rental.requests.AddRentalRequest;
+import com.tobeto.pair8.services.dtos.rental.requests.DeleteRentalRequest;
 import com.tobeto.pair8.services.dtos.rental.requests.UpdateRentalRequest;
+import com.tobeto.pair8.services.dtos.rental.responses.GetByIdRentalResponse;
 import com.tobeto.pair8.services.dtos.rental.responses.GetListRentalResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -29,8 +31,19 @@ public class RentalsController {
         rentalService.update(updateRentalRequest);
     }
 
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody @Valid DeleteRentalRequest deleteRentalRequest){ rentalService.delete(deleteRentalRequest);}
+
     @GetMapping("getRentals")
     public List<GetListRentalResponse> getList(){
         return rentalService.getList();
+    }
+
+    @GetMapping("/getAll")
+    public List<GetListRentalResponse> getAll() {return rentalService.getAll();}
+
+    @GetMapping("/getById")
+    public GetByIdRentalResponse getById(@RequestParam @Valid int id){
+        return rentalService.getById(id);
     }
 }

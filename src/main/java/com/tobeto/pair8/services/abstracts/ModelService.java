@@ -4,6 +4,7 @@ import com.tobeto.pair8.services.dtos.model.requests.AddModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.DeleteModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.UpdateModelRequest;
 import com.tobeto.pair8.services.dtos.model.responses.GetAllListModelRespose;
+import com.tobeto.pair8.services.dtos.model.responses.GetByIdModelResponse;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface ModelService {
     void delete(DeleteModelRequest deleteModelRequest);
 
     List<GetAllListModelRespose> getAll();
+
+    GetByIdModelResponse getById(int id);
 }

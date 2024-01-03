@@ -8,6 +8,8 @@ import com.tobeto.pair8.services.dtos.model.requests.AddModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.DeleteModelRequest;
 import com.tobeto.pair8.services.dtos.model.requests.UpdateModelRequest;
 import com.tobeto.pair8.services.dtos.model.responses.GetAllListModelRespose;
+import com.tobeto.pair8.services.dtos.model.responses.GetByIdModelResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -45,7 +47,8 @@ public class ModelManager implements ModelService {
 
     @Override
     public void delete(DeleteModelRequest deleteModelRequest) {
-        Model modelToDelete= modelRepository.findById(deleteModelRequest.getId()).orElseThrow();
+        Model modelToDelete= modelRepository.findById(deleteModelRequest.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Model Bulunamad, ID:" + deleteModelRequest.getId()));
         modelRepository.delete(modelToDelete);
 
     }
@@ -59,5 +62,12 @@ public class ModelManager implements ModelService {
                 .collect(Collectors.toList());
         return modelResposes;
     }
+
+   @Override
+    public GetByIdModelResponse getById(int id){
+        Model model = modelRepository.findById(id).orElseThrow();
+        GetByIdModelResponse modelResponses = this.modelMapperService.forResponse().map(model, GetByIdModelResponse.class);
+       return modelResponses;
+   }
 
 }

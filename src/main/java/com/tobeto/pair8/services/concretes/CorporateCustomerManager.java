@@ -5,12 +5,11 @@ import com.tobeto.pair8.entities.concretes.CorporateCustomer;
 import com.tobeto.pair8.repositories.CorporateCustomerRepository;
 import com.tobeto.pair8.services.abstracts.CorporateCustomerService;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.AddCorporateCustomerRequest;
-import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.DeleteCorporateCustpmerRequest;
-import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.UpdateCorporateCustomrRequest;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.DeleteCorporateCustomerRequest;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.UpdateCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetAllCorporateCustomer;
+import com.tobeto.pair8.services.dtos.CorporateCustomer.responses.GetByIdCorporateCustomerResponse;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,16 +27,17 @@ public class CorporateCustomerManager implements CorporateCustomerService {
     }
 
     @Override
-    public void update(UpdateCorporateCustomrRequest updateCorporateCustomrRequest) {
-        CorporateCustomer corporateCustomerUpdate = corporateCustomerRepository.findById(updateCorporateCustomrRequest.getId()).orElseThrow();
-this.modelMapperService.forRequest().map(updateCorporateCustomrRequest, corporateCustomerUpdate);
-corporateCustomerRepository.saveAndFlush(corporateCustomerUpdate);
+    public void update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest) {
+        CorporateCustomer corporateCustomerToUpdate = corporateCustomerRepository.findById(updateCorporateCustomerRequest.getId()).orElseThrow();
 
+        this.modelMapperService.forRequest().map(updateCorporateCustomerRequest, corporateCustomerToUpdate);
+        corporateCustomerRepository.saveAndFlush(corporateCustomerToUpdate);
     }
 
+
     @Override
-    public void delete(DeleteCorporateCustpmerRequest deleteCorporateCustpmerRequest) {
-        CorporateCustomer corporateCustomerDelete = corporateCustomerRepository.findById(deleteCorporateCustpmerRequest.getId()).orElseThrow();
+    public void delete(DeleteCorporateCustomerRequest deleteCorporateCustomerRequest) {
+        CorporateCustomer corporateCustomerDelete = corporateCustomerRepository.findById(deleteCorporateCustomerRequest.getId()).orElseThrow();
         corporateCustomerRepository.delete(corporateCustomerDelete);
     }
 
@@ -50,5 +50,13 @@ corporateCustomerRepository.saveAndFlush(corporateCustomerUpdate);
                 .collect(Collectors.toList());
         return getAllCorporateCustomers;
 
+    }
+
+    @Override
+    public GetByIdCorporateCustomerResponse getById(int id) {
+        CorporateCustomer corporateCustomer = corporateCustomerRepository.findById(id).orElseThrow();
+
+        GetByIdCorporateCustomerResponse corporateCustomerResponse= this.modelMapperService.forResponse().map(corporateCustomer, GetByIdCorporateCustomerResponse.class);
+        return corporateCustomerResponse;
     }
 }

@@ -8,8 +8,11 @@ import com.tobeto.pair8.services.abstracts.CarService;
 import com.tobeto.pair8.services.abstracts.RentalService;
 import com.tobeto.pair8.services.dtos.car.responses.GetByIdCarResponse;
 import com.tobeto.pair8.services.dtos.rental.requests.AddRentalRequest;
+import com.tobeto.pair8.services.dtos.rental.requests.DeleteRentalRequest;
 import com.tobeto.pair8.services.dtos.rental.requests.UpdateRentalRequest;
+import com.tobeto.pair8.services.dtos.rental.responses.GetByIdRentalResponse;
 import com.tobeto.pair8.services.dtos.rental.responses.GetListRentalResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -40,22 +43,51 @@ public class RentalManager implements RentalService {
 
     @Override
     public void update(UpdateRentalRequest updateRentalRequest) {
-        Rental rentalToUpdate =rentalRepository.findById(updateRentalRequest.getId())
+        Rental rentalToUpdate = rentalRepository.findById(updateRentalRequest.getId())
                 .orElseThrow();
-        this.modelMapperService.forRequest().map(updateRentalRequest,rentalToUpdate);
+        this.modelMapperService.forRequest().map(updateRentalRequest, rentalToUpdate);
         rentalRepository.saveAndFlush(rentalToUpdate);
 
+    }
+
+    @Override
+    public void delete(DeleteRentalRequest deleteRentalRequest) {
+        Rental rentalToDelete = rentalRepository.findById(deleteRentalRequest.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Bulunamadı, ID:" + deleteRentalRequest.getId()));
+
+        rentalRepository.delete(rentalToDelete);
     }
 
 
     @Override
     public List<GetListRentalResponse> getList() {
-        List<Rental> rentals =rentalRepository.findAll();
+        List<Rental> rentals = rentalRepository.findAll();
         List<GetListRentalResponse> rentalResponses = rentals.stream()
-                .map(rental -> this.modelMapperService.forResponse().map(rental,GetListRentalResponse.class))
+                .map(rental -> this.modelMapperService.forResponse().map(rental, GetListRentalResponse.class))
                 .collect(Collectors.toList());
         return rentalResponses;
     }
+
+    @Override
+    public List<GetListRentalResponse> getAll() {
+        List<Rental> rentals = rentalRepository.findAll();
+        List<GetListRentalResponse> rentalResponses = rentals.stream()
+                .map(rental -> this.modelMapperService
+                        .forResponse().map(rental, GetListRentalResponse.class))
+                .collect(Collectors.toList());
+        return rentalResponses;
+
+
+    }
+
+    @Override
+    public GetByIdRentalResponse getById ( int id){
+
+        Rental rental = rentalRepository.findById(id).orElseThrow();
+        GetByIdRentalResponse rentalResponses = this.modelMapperService.forResponse().map(rental, GetByIdRentalResponse.class);
+        return rentalResponses;
+    }
+
 
     private double TotalPrice(LocalDate start, LocalDate end, double dailyPrice) {
         long daysBetween = start.until(end, ChronoUnit.DAYS);

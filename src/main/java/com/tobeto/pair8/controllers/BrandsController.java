@@ -43,6 +43,7 @@ public class BrandsController {
 
 
     @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.OK)
     public void update (@RequestBody @Valid UpdateBrandRequest updateBrandRequest){
         brandService.update(updateBrandRequest);
     }
