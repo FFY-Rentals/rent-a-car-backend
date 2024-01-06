@@ -3,6 +3,7 @@ package com.tobeto.pair8.services.concretes;
 import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
 import com.tobeto.pair8.entities.concretes.CorporateCustomer;
 import com.tobeto.pair8.repositories.CorporateCustomerRepository;
+import com.tobeto.pair8.rules.CorporateCustomer.CorporateCustomerBusinessRulesService;
 import com.tobeto.pair8.services.abstracts.CorporateCustomerService;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.AddCorporateCustomerRequest;
 import com.tobeto.pair8.services.dtos.CorporateCustomer.requests.DeleteCorporateCustomerRequest;
@@ -20,8 +21,10 @@ import java.util.stream.Collectors;
 public class CorporateCustomerManager implements CorporateCustomerService {
     private final CorporateCustomerRepository corporateCustomerRepository;
     private final ModelMapperService modelMapperService;
+    private final CorporateCustomerBusinessRulesService corporateCustomerBusinessRulesService;
     @Override
     public void add(AddCorporateCustomerRequest addCorporateCustomerRequest) {
+        corporateCustomerBusinessRulesService.exceptionSameTaxNo(addCorporateCustomerRequest);
         CorporateCustomer corporateCustomer = this.modelMapperService.forRequest().map(addCorporateCustomerRequest, CorporateCustomer.class);
         corporateCustomerRepository.save(corporateCustomer);
     }

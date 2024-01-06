@@ -3,6 +3,7 @@ package com.tobeto.pair8.services.concretes;
 import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
 import com.tobeto.pair8.entities.concretes.Car;
 import com.tobeto.pair8.repositories.CarRepository;
+import com.tobeto.pair8.rules.car.CarBusinessRulesMenager;
 import com.tobeto.pair8.services.abstracts.CarService;
 import com.tobeto.pair8.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.pair8.services.dtos.car.requests.DeleteCarRequest;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class CarManager implements CarService {
     private final CarRepository carRepository;
     private final ModelMapperService modelMapperService;
+    private final CarBusinessRulesMenager carBusinessRulesMenager;
 
     @Override
     public List<GetAllListCarResponse> getAll() {
@@ -54,10 +56,7 @@ public class CarManager implements CarService {
 
     @Override
     public void add(AddCarRequest addCarRequest) {
-        if (carRepository.existsByPlate(addCarRequest.getPlate()))
-        {
-            throw new RuntimeException("DB de aynı plakadan araç mevcuttur");
-        }
+        carBusinessRulesMenager.exceptionSamePalte(addCarRequest);
         Car car = this.modelMapperService.forRequest().map(addCarRequest, Car.class);
         carRepository.save(car);
     }

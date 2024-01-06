@@ -3,6 +3,7 @@ package com.tobeto.pair8.services.concretes;
 import com.tobeto.pair8.core.utilities.mappers.services.ModelMapperService;
 import com.tobeto.pair8.entities.concretes.Color;
 import com.tobeto.pair8.repositories.ColorRepository;
+import com.tobeto.pair8.rules.color.ColorBusinessRulesService;
 import com.tobeto.pair8.services.abstracts.ColorService;
 import com.tobeto.pair8.services.dtos.color.requests.AddColorRequest;
 import com.tobeto.pair8.services.dtos.color.requests.DeleteColorRequest;
@@ -19,20 +20,21 @@ import java.util.stream.Collectors;
 public class ColorManager implements ColorService {
     private final ColorRepository colorRepository;
     private final ModelMapperService modelMapperService;
+    private final ColorBusinessRulesService colorBusinessRulesService;
+
     @Override
     public void add(AddColorRequest addColorRequest) {
-       if (colorRepository.existsByName(addColorRequest.getName()))
-            throw new RuntimeException("Aynı renk iki kez eklenemez");
-
+        colorBusinessRulesService.exceptionSameName(addColorRequest);
         Color color = this.modelMapperService.forRequest().map(addColorRequest, Color.class);
         colorRepository.save(color);
     }
+
     @Override
     public void update(UpdateColorRequest updateColorRequest) {
-     Color colorToUpate =colorRepository.findById(updateColorRequest.getId()).orElseThrow();
-
-     this.modelMapperService.forRequest().map(updateColorRequest,colorToUpate);
-     colorRepository.saveAndFlush(colorToUpate);
+        colorBusinessRulesService.exceptionSameName(updateColorRequest);
+        Color colorToUpate = colorRepository.findById(updateColorRequest.getId()).orElseThrow();
+        this.modelMapperService.forRequest().map(updateColorRequest, colorToUpate);
+        colorRepository.saveAndFlush(colorToUpate);
 
     }
 
@@ -46,9 +48,9 @@ public class ColorManager implements ColorService {
 
     @Override
     public List<GetAllListColorResponse> getAll() {
-        List <Color> colors = colorRepository.findAll();
-        List<GetAllListColorResponse>colorResponses = colors.stream()
-                .map(color -> this.modelMapperService.forResponse().map(color,GetAllListColorResponse.class))
+        List<Color> colors = colorRepository.findAll();
+        List<GetAllListColorResponse> colorResponses = colors.stream()
+                .map(color -> this.modelMapperService.forResponse().map(color, GetAllListColorResponse.class))
                 .collect(Collectors.toList());
 
         return colorResponses;
