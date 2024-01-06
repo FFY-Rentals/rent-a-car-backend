@@ -1,12 +1,21 @@
 package com.tobeto.pair8.services.dtos.CorporateCustomer.requests;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 @Data
 public class AddCorporateCustomerRequest {
+
+    @NotBlank(message = "Şirket adı boş olamaz")
     private String companyName;
+
+    @NotBlank(message = "Vergi numarası boş olamaz")
+    @Pattern(regexp = "[0-9]{10}", message = "Geçerli bir vergi numarası giriniz (10 haneli)")
     private String taxNo;
-    private int userId;
+
+    @NotNull(message = "Kullanıcı ID boş olamaz")
+    private Integer userId;
 }

@@ -9,6 +9,7 @@ import com.tobeto.pair8.services.dtos.customer.request.DeleteCustomerRequest;
 import com.tobeto.pair8.services.dtos.customer.request.UpdateCustomerRequest;
 import com.tobeto.pair8.services.dtos.customer.responses.GetAllCustomerResponse;
 import com.tobeto.pair8.services.dtos.customer.responses.GetByIdCustomerResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,9 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public GetByIdCustomerResponse getById(int id) {
+        if (!customerRepository.existsById(id)) {
+            throw new EntityNotFoundException("Customer not found");
+        }
         Customer customer = customerRepository.findById(id).orElseThrow();
         GetByIdCustomerResponse getByIdCustomerResponse = this.modelMapperService.forResponse().map(customer, GetByIdCustomerResponse.class);
         return getByIdCustomerResponse;

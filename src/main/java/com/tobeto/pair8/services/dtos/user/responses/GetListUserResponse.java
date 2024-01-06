@@ -14,11 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetListUserResponse {
-    @NotBlank(message = "isim alanı boş olamaz!!!!")
+    private int id;
     private String name;
-    @NotBlank(message = "soyad alanı boş olamaz!!!!")
     private String surName;
-    @Email(message = "Lütfen geçerli bir e-mail adresi giriniz!!!!")
     private String eMail;
 
 
