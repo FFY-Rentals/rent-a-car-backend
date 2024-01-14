@@ -8,18 +8,18 @@ import { AuthProvider } from './contexts/AuthContext';
 import 'semantic-ui-css/semantic.min.css'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <AuthProvider>  
-   
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  </AuthProvider>
+  <AuthProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+    </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

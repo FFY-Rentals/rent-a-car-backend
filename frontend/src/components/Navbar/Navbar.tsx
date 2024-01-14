@@ -4,21 +4,7 @@ import SignedIn from './SignedIn';
 import SignedOut from './SignedOut';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-const StyledNav = styled(Nav)`
-  a {
-    font-size: 18px;
-    color: rgba(0, 0, 0, 0.7); /* Griye yakın siyah renk */
-    font-weight: normal; /* Normal kalınlıkta yazı stilini belirt */
-    transition: color 0.3s ease, font-weight 0.3s ease; /* Renk ve kalınlık değişimi için geçiş efekti ekleme */
-  }
-
-  a:hover {
-    color: #000; /* Üzerine gelince renk değiştir */
-    font-weight: bold; /* Kalın yazı stilini belirt */
-  }
-`;
+import './Navbar.css'; // Stil dosyanızı ekleyin
 
 const CustomNavbar = () => {
   const authContext: any = useContext(AuthContext);
@@ -34,7 +20,7 @@ const CustomNavbar = () => {
   };
 
   return (
-    <Navbar style={{ backgroundColor: '#d3d3d3' }} variant="dark" expand="lg">
+    <Navbar expand="lg" className='Navbar'>
       <Navbar.Brand as={Link} to="/">
         <img
           src="https://www.garenta.com.tr/Content/assets/images/garenta-logo.png"
@@ -44,7 +30,7 @@ const CustomNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <StyledNav className="ms-auto justify-content-center">
+        <Nav className="Nav">
           <Nav.Link as={Link} to="/about">
             Hakkımızda
           </Nav.Link>
@@ -57,8 +43,8 @@ const CustomNavbar = () => {
           <Nav.Link as={Link} to="/contact">
             İletişim
           </Nav.Link>
-        </StyledNav>
-        <Nav className="ms-auto">
+        </Nav>
+        <Nav className="Navbar-right">
           <Nav.Link>
             {authContext.isAuthenticated ? <SignedIn signOut={signOut} /> : <SignedOut signIn={signIn} />}
           </Nav.Link>

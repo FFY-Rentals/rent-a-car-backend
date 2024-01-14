@@ -1,0 +1,41 @@
+/* Navbar Stilleri */
+.Navbar {
+	background: linear-gradient(to right, rgba(128, 128, 128, 1) 0%, rgb(255, 64, 0) 100%);
+  }
+  
+  /* Navbar Link Container Stili */
+  .Nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+  }
+  
+  /* Navbar Link Stilleri */
+  .Nav a {
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.7);
+	font-weight: normal;
+	transition: color 0.3s ease, font-weight 0.3s ease;
+	padding: 15px 20px;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+  }
+  
+  .Nav a:hover {
+	color: #000;
+	font-weight: bold;
+  }
+  
+  /* Navbar Logo Stili */
+  .logo {
+	max-width: 100%;
+  }
+  
+  /* Navbar Sağ Taraf Stilleri */
+  .Navbar-right {
+	display: flex;
+	align-items: center;
+  }
+  
