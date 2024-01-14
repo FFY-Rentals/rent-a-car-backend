@@ -1,11 +1,20 @@
+// Homepage.js
+
 import React from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Formik, Field, Form as FormikForm } from 'formik';
-import { Icon } from 'semantic-ui-react';
 import SliderComp from '../../components/Home/SliderComp';
+import './Homepage.css';
 
 const Homepage = () => {
   const handleSearch = () => {};
+
+  const locationOptions = [
+    "Adres 1",
+    "Adres 2",
+    "Adres 3",
+    // Diğer adres seçenekleri
+  ];
 
   return (
     <>
@@ -23,23 +32,32 @@ const Homepage = () => {
               {() => (
                 <FormikForm>
                   <Form.Group controlId="pickupLocation">
-                    <Form.Label className="h5">Alış Yeri</Form.Label>
+                    <Form.Label className="form-label-bold">Alış Yeri</Form.Label>
                     <Field
                       name="pickupLocation"
-                      placeholder="Alış Yeri Giriniz"
-                      as={Form.Control}
-                    />
+                      as="select"
+                      className="form-control"
+                    >
+                      <option value="" disabled>
+                        Lütfen bir adres seçiniz
+                      </option>
+                      {locationOptions.map((location, index) => (
+                        <option key={index} value={location}>
+                          {location}
+                        </option>
+                      ))}
+                    </Field>
                   </Form.Group>
                   <Row>
                     <Col>
                       <Form.Group controlId="pickupDate">
-                        <Form.Label className="h6">Alış Tarihi</Form.Label>
+                        <Form.Label className="form-label-bold">Alış Tarihi</Form.Label>
                         <Field type="date" name="pickupDate" as={Form.Control} />
                       </Form.Group>
                     </Col>
                     <Col>
                       <Form.Group controlId="returnDate">
-                        <Form.Label className="h6">Dönüş Tarihi</Form.Label>
+                        <Form.Label className="form-label-bold">Dönüş Tarihi</Form.Label>
                         <Field type="date" name="returnDate" as={Form.Control} />
                       </Form.Group>
                     </Col>

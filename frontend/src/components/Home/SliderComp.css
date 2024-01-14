@@ -7,27 +7,7 @@
 
 }
 
-
-
-.slider-item {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	text-align: left;
-	width: 100%;
-}
-
 img {
 	width: 60%;
 	height: auto;
-}
-
-.car-info {
-	margin-left: 20px;
-}
-
-/* Slider link stilini özelleştirme */
-.custom-slider a {
-	font-size: 16px; /* İstediğiniz boyutu ayarlayabilirsiniz */
-	color: #007bff; /* İstediğiniz renk */
 }
