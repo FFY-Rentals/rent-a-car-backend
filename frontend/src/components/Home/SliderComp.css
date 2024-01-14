@@ -1,0 +1,43 @@
+/* SliderComp.css */
+
+.slider-comp-container {
+	background-color: #f0f0f0;
+	width: 80%;
+	margin: 0 auto;
+  }
+  
+  .custom-slider {
+	/* Özel slider stilleri ekleyebilirsiniz */
+  }
+  
+  .slider-item {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	text-align: left;
+	width: 100%;
+  }
+  
+  img {
+	width: 60%;
+	height: auto;
+  }
+  
+  .car-info {
+	margin-left: 20px;
+  }
+  
+  .arrow {
+	font-size: 24px;
+	font-weight: bold;
+	color: gray; /* Ok rengini gri yap */
+	cursor: pointer;
+	transition: all 0.3s ease; /* Geçiş efekti ekle */
+  }
+  
+  .arrow:hover {
+	color: darkgray; /* Hover durumunda rengi değiştir */
+	font-size: 28px; /* Hover durumunda büyüt */
+	font-weight: bolder; /* Hover durumunda daha kalın yap */
+  }
+  
