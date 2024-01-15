@@ -1,10 +1,9 @@
 /* SliderComp.css */
 
 .slider-comp-container {
-	width: 80%;
-	margin: 0 auto;
-	background: linear-gradient(to right, rgba(128, 128, 128, 1) 0%, rgb(32, 28, 27) 100%);
-
+    width: 80%;
+    margin: 0 auto;
+    background: linear-gradient(to right, rgb(232, 78, 12) 0%, rgba(222, 67, 28, 0) 100%);
 }
 
 img {

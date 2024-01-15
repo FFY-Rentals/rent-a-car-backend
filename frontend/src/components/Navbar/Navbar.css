@@ -28,10 +28,6 @@
 	font-weight: bold;
   }
   
-  /* Navbar Logo Stili */
-  .logo {
-	max-width: 100%;
-  }
   
   /* Navbar Sağ Taraf Stilleri */
   .Navbar-right {
@@ -39,3 +35,7 @@
 	align-items: center;
   }
   
+  .logo{
+	  width: 196px;
+	  height: 50px;
+  }

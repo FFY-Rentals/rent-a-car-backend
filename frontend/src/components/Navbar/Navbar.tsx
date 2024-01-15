@@ -4,7 +4,7 @@ import SignedIn from './SignedIn';
 import SignedOut from './SignedOut';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Stil dosyanızı ekleyin
+import './Navbar.css';
 
 const CustomNavbar = () => {
   const authContext: any = useContext(AuthContext);
@@ -23,7 +23,7 @@ const CustomNavbar = () => {
     <Navbar expand="lg" className='Navbar'>
       <Navbar.Brand as={Link} to="/">
         <img
-          src="https://www.garenta.com.tr/Content/assets/images/garenta-logo.png"
+          src="https://i.ibb.co/m9VCTp4/lillogo-FFY.png"
           alt="logo"
           className="logo"
         />

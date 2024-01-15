@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Homepage from './pages/Homepage/Homepage';
 import Cars from './pages/Car/Cars';
 import 'react-slideshow-image/dist/styles.css'
+import CustomFooter from './components/Footer/Footer';
 
 function App() : ReactElement{
   return (
@@ -15,6 +16,7 @@ function App() : ReactElement{
       <Route path="/" element={<Homepage />} />
       <Route path="/cars" element={<Cars />} />
     </Routes>
+    <CustomFooter />
     </>
   );
 }
