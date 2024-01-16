@@ -11,7 +11,8 @@ export default function SignedIn({ signOut }: { signOut: () => void }) {
         />        <Dropdown text='Fatih' pointing className='link item' style={{ color: 'black' }}>
           <Dropdown.Menu style={{ marginLeft: '-80px', marginRight: '1.em' }}>
             <Dropdown.Item>
-              <strong>Bilgilerim</strong>
+              <Icon name='user' />
+              <strong>Hesabım</strong>
             </Dropdown.Item>
             <Dropdown.Item onClick={signOut}>
               <Icon name='sign out' />

@@ -1,26 +1,30 @@
 import { ErrorMessage, Field } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+
+type Option = {
+  value: string;
+  label: string;
+};
 
 type Props = {
   label: string;
   name: string;
-}
+  options: Option[];
+};
 
-const FormikSelect = ({ label, name }: Props) => {
-
-	const colorOptions = [
-		{ value: "0", label: "Renk Seçiniz" },
-		{ value: "1", label: "Kırmızı" },
-		{ value: "2", label: "Siyah" },
-		{ value: "3", label: "Mavi" },
-		{ value: "4", label: "Yeşil" },
-		{ value: "5", label: "Beyaz" },
-	  ];
-
+const FormikSelect = ({ label, name, options }: Props) => {
   return (
     <div className="mb-3">
-      <label className='form-label'>{label}</label>
-      <Field as="select" className="form-select" name={name}>
-        {colorOptions.map((option) => (
+      <label className='form-label'>
+        {label}
+        <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+      </label>
+      <Field as="select" className="form-control" name={name}>
+        <option value="" disabled>
+          Lütfen bir adres seçiniz
+        </option>
+        {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>

@@ -30,6 +30,7 @@ const Cars = () => {
                       alt={`Car Image - ${car.imagePath}`}
                       className="card-img-top"
                       style={{ objectFit: 'cover', height: '200px' }}
+                      loading='lazy'
                     />
                     <div className="card-body">
                       <h5 className="card-title">

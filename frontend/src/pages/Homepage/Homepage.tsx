@@ -1,15 +1,27 @@
-// Homepage.js
+// Homepage.tsx
 
-import React from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
-import { Formik, Field, Form as FormikForm } from 'formik';
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Formik, Form as FormikForm } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons';
 import SliderComp from '../../components/Home/SliderComp';
+import FormikSelect from '../../components/FormikSelect/FormikSelect';
+import FormikInput from '../../components/FormikInput/FormikInput';
 import './Homepage.css';
 
-const Homepage = () => {
-  const handleSearch = () => {};
+interface HomepageProps {}
 
-  const locationOptions = [
+const Homepage: React.FC<HomepageProps> = () => {
+  const [isCarAnimated, setCarAnimated] = useState(false);
+
+  const handleSearch = () => {
+    // Your search logic here
+    // For demo purposes, let's toggle the animation state
+    setCarAnimated(!isCarAnimated);
+  };
+
+  const locationOptions: string[] = [
     "Adres 1",
     "Adres 2",
     "Adres 3",
@@ -17,10 +29,10 @@ const Homepage = () => {
   ];
 
   return (
-    <>
-      <div className="mt-5">
-        <Row className="justify-content-md-center">
-          <Col md={6}>
+    <Container fluid className="mt-5">
+      <Row className="justify-content-md-center">
+        <Col md={6}>
+          <div className="formik-section">
             <Formik
               initialValues={{
                 pickupLocation: '',
@@ -32,49 +44,32 @@ const Homepage = () => {
               {() => (
                 <FormikForm>
                   <Form.Group controlId="pickupLocation">
-                    <Form.Label className="form-label-bold">Alış Yeri</Form.Label>
-                    <Field
+                    <FormikSelect
+                      label="Alış Yeri"
                       name="pickupLocation"
-                      as="select"
-                      className="form-control"
-                    >
-                      <option value="" disabled>
-                        Lütfen bir adres seçiniz
-                      </option>
-                      {locationOptions.map((location, index) => (
-                        <option key={index} value={location}>
-                          {location}
-                        </option>
-                      ))}
-                    </Field>
+                      options={locationOptions.map(location => ({ value: location, label: location }))}
+                    />
                   </Form.Group>
-                  <Row>
-                    <Col>
-                      <Form.Group controlId="pickupDate">
-                        <Form.Label className="form-label-bold">Alış Tarihi</Form.Label>
-                        <Field type="date" name="pickupDate" as={Form.Control} />
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group controlId="returnDate">
-                        <Form.Label className="form-label-bold">Dönüş Tarihi</Form.Label>
-                        <Field type="date" name="returnDate" as={Form.Control} />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                  <FormikInput label="Alış Tarihi" name="pickupDate" type="date" />
+                  <FormikInput label="Dönüş Tarihi" name="returnDate" type="date" />
                   <br />
-                  <Button variant="primary" type="submit">
-                    Araçları Göster
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className={isCarAnimated ? 'car-animated' : ''}
+                  >
+                    <FontAwesomeIcon icon={faCar} className="mr-2" />
+                    <span>Araçları Göster</span>
                   </Button>
                 </FormikForm>
               )}
             </Formik>
-          </Col>
-        </Row>
-      </div>
-      <br /><br /><br />
+          </div>
+        </Col>
+      </Row>
+      <br /><br /><br /><br /><br />
       <SliderComp />
-    </>
+    </Container>
   );
 };
 

@@ -40,7 +40,7 @@ const SliderComp = (props: Props) => {
 		};
 
 		return (
-			<div className="slider-comp-container">
+			<div className="slider-comp-container mt-5">
 				<Slider {...settings} className="custom-slider">
 					{randomCarIndexes.map((index, idx) => (
 						<div key={idx} className="slider-item">
