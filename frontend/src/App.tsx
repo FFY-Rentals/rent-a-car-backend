@@ -11,7 +11,7 @@ import About from './pages/About/About';
 
 function App() : ReactElement{
   return (
-    <>
+    <div style={{background : 'grey'}}>
     <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -19,7 +19,7 @@ function App() : ReactElement{
         <Route path="/cars" element={<Cars />} />
       </Routes>
       <CustomFooter />
-    </>
+    </div>
   );
 }
 

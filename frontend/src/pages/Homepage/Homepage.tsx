@@ -9,6 +9,7 @@ import SliderComp from '../../components/Home/SliderComp';
 import FormikSelect from '../../components/FormikSelect/FormikSelect';
 import FormikInput from '../../components/FormikInput/FormikInput';
 import './Homepage.css';
+import CustomFooter from '../../components/Footer/Footer';
 
 interface HomepageProps {}
 
@@ -29,7 +30,7 @@ const Homepage: React.FC<HomepageProps> = () => {
   ];
 
   return (
-    <Container fluid className="mt-5">
+    <div className="mt-5">
       <Row className="justify-content-md-center">
         <Col md={6}>
           <div className="formik-section">
@@ -69,7 +70,7 @@ const Homepage: React.FC<HomepageProps> = () => {
       </Row>
       <br /><br /><br /><br /><br />
       <SliderComp />
-    </Container>
+    </div>
   );
 };
 

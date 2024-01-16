@@ -3,6 +3,7 @@ import CarService from '../../service/carService/CarService';
 import { CarModel } from '../../models/carModels/GetAllCarModel';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import CustomFooter from '../../components/Footer/Footer';
 
 const Cars = () => {
   const [cars, setCars] = useState<CarModel[]>([]);
